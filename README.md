@@ -1,7 +1,9 @@
 # SkinAI — Application Web de Diagnostic du Cancer de la Peau
 
 Application web complète développée dans le cadre du module Intelligence Artificielle - ENSTAB 2025/2026
+
 Professeur : Mme. Amira Echtioui
+
 Réalisée par : Elaa Cherif — 1ère année ingénieur Technologies Avancées (1TA1)
 
 ---
