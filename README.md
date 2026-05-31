@@ -4,7 +4,7 @@ Application web complète développée dans le cadre du module Intelligence Arti
 
 Professeur : Mme. Amira Echtioui
 
-Réalisée par : Elaa Cherif — 1ère année ingénieur Technologies Avancées (1TA1)
+Réalisée par : Elaa Cherif — 1ère année ingénieure en Technologies Avancées (1TA1)
 
 ---
 
