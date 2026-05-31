@@ -1,125 +1,123 @@
-# 🔬 SkinAI — Application Web de Diagnostic du Cancer de la Peau
+# SkinAI — Application Web de Diagnostic du Cancer de la Peau
 
-> Application web IA développée dans le cadre du module **Introduction à l'IA** — ENSTAB 2025/2026  
-> Enseignante : Dr. Amira Echtioui
-
----
-
-## 📌 Description
-
-**SkinAI** est une application web complète développée avec **Python Flask** intégrant un modèle de Deep Learning (**VGG16**) pour le diagnostic automatique des lésions cutanées.
-
-L'application permet à un professionnel de santé de :
-- Se connecter via un système d'authentification sécurisé
-- Soumettre l'image d'une lésion cutanée avec les informations du patient
-- Obtenir un diagnostic IA : **Bénin** ou **Malin** avec un taux de confiance
-- Consulter l'historique complet des diagnostics enregistrés
+Application web de diagnostic du cancer de la peau basée sur l'Intelligence Artificielle.
+Réalisée par : Elaa Cherif
 
 ---
 
-## 🖼️ Captures d'écran
+## Description
+
+SkinAI est une application web developpee avec Python Flask integrant un modele de Deep Learning (VGG16) pour le diagnostic automatique des lesions cutanees.
+
+L'application permet a un professionnel de sante de :
+- Se connecter via un systeme d'authentification securise
+- Soumettre l'image d'une lesion cutanee avec les informations du patient
+- Obtenir un diagnostic IA : Benin ou Malin avec un taux de confiance
+- Consulter l'historique complet des diagnostics enregistres
+
+---
+
+## Captures d'ecran
 
 ### Page de connexion
+Interface de login securisee avec un design medical professionnel. L'utilisateur entre son nom d'utilisateur et mot de passe pour acceder a la plateforme.
+
 ![Login](screenshots/login.png)
 
-### Dashboard
+### Tableau de bord
+Vue d'ensemble affichant les statistiques globales : nombre total de patients, cas malins detectes, cas benins, et la precision du modele IA.
+
 ![Dashboard](screenshots/dashboard.png)
 
 ### Analyse d'une image
+Formulaire permettant de saisir les informations du patient (nom, age) et de telecharger une image de lesion cutanee pour analyse.
+
 ![Predict](screenshots/predict.png)
 
-### Résultat du diagnostic
-![Result](screenshots/result.png)
+### Resultat du diagnostic : Cas malin
+Affichage du resultat avec le diagnostic (Malin), le taux de confiance en pourcentage, l'image analysee et une recommandation medicale.
+
+![Result Malin](screenshots/result_malin.png)
+
+### Resultat du diagnostic : Cas benin
+Affichage du resultat avec le diagnostic (Benin), le taux de confiance en pourcentage, l'image analysee et une recommandation de surveillance.
+
+![Result Benin](screenshots/result_benin.png)
 
 ### Historique des patients
+Tableau recapitulatif de tous les diagnostics enregistres avec le nom, l'age, le resultat, la probabilite, l'image et la date de chaque analyse.
+
 ![Patients](screenshots/patients.png)
 
 ---
 
-## 🗂️ Structure du projet
+## Structure du projet
 
 ```
 SKIN_CANCER_APP/
 ├── model/
-│   └── vgg16_malignant_vs_benign.h5   # Modèle entraîné
+│   └── vgg16_malignant_vs_benign.h5
 ├── static/
-│   ├── style.css                       # Feuille de style personnalisée
-│   └── uploads/                        # Images soumises par les utilisateurs
+│   ├── style.css
+│   └── uploads/
 ├── templates/
-│   ├── login.html                      # Page de connexion
-│   ├── dashboard.html                  # Tableau de bord
-│   ├── predict.html                    # Formulaire d'analyse
-│   ├── result.html                     # Affichage du résultat
-│   └── patients.html                   # Historique des patients
-├── app.py                              # Application Flask principale
-├── database.sql                        # Script de création de la base MySQL
+│   ├── login.html
+│   ├── dashboard.html
+│   ├── predict.html
+│   ├── result.html
+│   └── patients.html
+├── screenshots/
+├── app.py
+├── database.sql
+├── requirements.txt
 └── README.md
 ```
 
 ---
 
-## ⚙️ Technologies utilisées
+## Technologies utilisees
 
-| Technologie | Rôle |
-|---|---|
-| Python 3.x | Langage principal |
-| Flask | Framework web |
-| TensorFlow / Keras | Modèle Deep Learning (VGG16) |
-| MySQL | Base de données |
-| Bootstrap 5 | Interface utilisateur |
-| HTML/CSS | Templates Jinja2 |
+- Python 3.x — Langage principal
+- Flask — Framework web
+- TensorFlow / Keras — Modele Deep Learning VGG16
+- MySQL — Base de donnees
+- Bootstrap 5 — Interface utilisateur
+- HTML / CSS — Templates Jinja2
 
 ---
 
-## 🚀 Installation & Lancement
+## Installation et lancement
 
-### 1. Prérequis
-- Python 3.x
-- XAMPP (MySQL)
-- pip
-
-### 2. Installer les dépendances
+### 1. Installer les dependances
 ```bash
 pip install flask tensorflow numpy mysql-connector-python werkzeug
 ```
 
-### 3. Configurer la base de données
-1. Démarrer XAMPP → lancer Apache + MySQL
-2. Ouvrir **phpMyAdmin** → Onglet SQL
-3. Coller et exécuter le contenu de `database.sql`
+### 2. Configurer la base de donnees
+Lancer XAMPP, ouvrir phpMyAdmin et executer le fichier database.sql
 
-### 4. Placer le modèle
-Copier `vgg16_malignant_vs_benign.h5` dans le dossier `model/`
+### 3. Placer le modele
+Copier vgg16_malignant_vs_benign.h5 dans le dossier model/
 
-### 5. Lancer l'application
+### 4. Lancer l'application
 ```bash
 python app.py
 ```
-Ouvrir : [http://localhost:5000](http://localhost:5000)
+
+Ouvrir : http://localhost:5000
 
 ---
 
-## 🔐 Identifiants par défaut
+## Identifiants par defaut
 
-| Champ | Valeur |
-|---|---|
-| Nom d'utilisateur | `admin` |
-| Mot de passe | `1234` |
+- Nom d'utilisateur : admin
+- Mot de passe : 1234
 
 ---
 
-## 🧠 Modèle IA
+## Modele IA
 
-- **Architecture** : VGG16 (Transfer Learning, poids ImageNet)
-- **Dataset** : Images de lésions cutanées (Bénin / Malin)
-- **Entraînement** : Google Colab, 10 époques
-- **Résultats** : ~85% de précision sur le jeu de test
-- **Classes** : `Benign` (0) / `Malignant` (1)
-
----
-
-## 👩‍💻 Auteure
-
-Projet réalisé par **[Votre Prénom Nom]**  
-1ère année ingénieur — Technologies Avancées (1TA)  
-ENSTAB — 2025/2026
+- Architecture : VGG16 (Transfer Learning, poids ImageNet)
+- Dataset : Images de lesions cutanees (Benin / Malin)
+- Entrainement : Google Colab, 10 epoques
+- Classes : Benign (0) / Malignant (1)
