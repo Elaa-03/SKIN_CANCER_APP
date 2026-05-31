@@ -7,45 +7,45 @@ Réalisée par : Elaa Cherif
 
 ## Description
 
-SkinAI est une application web developpée avec Python Flask integrant un modele de Deep Learning (VGG16) pour le diagnostic automatique des lesions cutanees.
+SkinAI est une application web developpée avec Python Flask integrant un modèle de Deep Learning (VGG16) pour le diagnostic automatique des lesions cutanées.
 
-L'application permet a un professionnel de sante de :
-- Se connecter via un systeme d'authentification securise
-- Soumettre l'image d'une lesion cutanee avec les informations du patient
+L'application permet à un professionnel de sante de :
+- Se connecter via un système d'authentification securisé
+- Soumettre l'image d'une lesion cutanée avec les informations du patient
 - Obtenir un diagnostic IA : Benin ou Malin avec un taux de confiance
-- Consulter l'historique complet des diagnostics enregistres
+- Consulter l'historique complet des diagnostics enregistrés
 
 ---
 
 ## Captures d'ecran
 
 ### Page de connexion
-Interface de login securisée avec un design medical professionnel. L'utilisateur entre son nom d'utilisateur et mot de passe pour acceder a la plateforme.
+Interface de login securisée avec un design medical professionnel. L'utilisateur entre son nom d'utilisateur et mot de passe pour accéder à la plateforme.
 
 ![Login](screenshots/login.png)
 
 ### Tableau de bord
-Vue d'ensemble affichant les statistiques globales : nombre total de patients, cas malins detectes, cas benins, et la precision du modele IA.
+Vue d'ensemble affichant les statistiques globales : nombre total de patients, cas malins detectés, cas benins, et la précision du modele IA.
 
 ![Dashboard](screenshots/dashboard.png)
 
 ### Analyse d'une image
-Formulaire permettant de saisir les informations du patient (nom, age) et de telecharger une image de lesion cutanee pour analyse.
+Formulaire permettant de saisir les informations du patient (nom, age) et de télécharger une image de lesion cutanée pour analyse.
 
 ![Predict](screenshots/predict.png)
 
 ### Resultat du diagnostic : Cas malin
-Affichage du resultat avec le diagnostic (Malin), le taux de confiance en pourcentage, l'image analysee et une recommandation medicale.
+Affichage du résultat avec le diagnostic (Malin), le taux de confiance en pourcentage, l'image analysee et une recommandation medicale.
 
-![Result Malin](screenshots/result_malin.png)
+![Result Malin](screenshots/result_malignant.png)
 
 ### Resultat du diagnostic : Cas benin
-Affichage du resultat avec le diagnostic (Benin), le taux de confiance en pourcentage, l'image analysee et une recommandation de surveillance.
+Affichage du résultat avec le diagnostic (Benin), le taux de confiance en pourcentage, l'image analysée et une recommandation de surveillance.
 
-![Result Benin](screenshots/result_benin.png)
+![Result Benin](screenshots/result_benign.png)
 
 ### Historique des patients
-Tableau recapitulatif de tous les diagnostics enregistres avec le nom, l'age, le resultat, la probabilite, l'image et la date de chaque analyse.
+Tableau récapitulatif de tous les diagnostics enregistrés avec le nom, l'age, le résultat, la probabilité, l'image et la date de chaque analyse.
 
 ![Patients](screenshots/patients.png)
 
@@ -93,7 +93,7 @@ SKIN_CANCER_APP/
 pip install flask tensorflow numpy mysql-connector-python werkzeug
 ```
 
-### 2. Configurer la base de donnees
+### 2. Configurer la base de données
 Lancer XAMPP, ouvrir phpMyAdmin et executer le fichier database.sql
 
 ### 3. Placer le modele
