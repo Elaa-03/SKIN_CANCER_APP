@@ -7,7 +7,7 @@ Réalisée par : Elaa Cherif
 
 ## Description
 
-SkinAI est une application web developpee avec Python Flask integrant un modele de Deep Learning (VGG16) pour le diagnostic automatique des lesions cutanees.
+SkinAI est une application web developpée avec Python Flask integrant un modele de Deep Learning (VGG16) pour le diagnostic automatique des lesions cutanees.
 
 L'application permet a un professionnel de sante de :
 - Se connecter via un systeme d'authentification securise
@@ -20,7 +20,7 @@ L'application permet a un professionnel de sante de :
 ## Captures d'ecran
 
 ### Page de connexion
-Interface de login securisee avec un design medical professionnel. L'utilisateur entre son nom d'utilisateur et mot de passe pour acceder a la plateforme.
+Interface de login securisée avec un design medical professionnel. L'utilisateur entre son nom d'utilisateur et mot de passe pour acceder a la plateforme.
 
 ![Login](screenshots/login.png)
 
