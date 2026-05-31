@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SkinAI — Dashboard</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="app-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-icon"><i class="ti ti-microscope" style="color:white;font-size:17px"></i></div>
+      <div>
+        <div class="logo-name">SkinAI</div>
+        <div class="logo-sub">Dermatology AI</div>
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="/dashboard" class="nav-item active"><i class="ti ti-layout-dashboard"></i> Dashboard</a>
+      <a href="/predict"   class="nav-item"><i class="ti ti-stethoscope"></i> Nouvelle analyse</a>
+      <div class="nav-section">Données</div>
+      <a href="/patients"  class="nav-item"><i class="ti ti-users"></i> Patients</a>
+      <div class="nav-section">Compte</div>
+      <a href="/logout"    class="nav-item"><i class="ti ti-logout"></i> Déconnexion</a>
+    </nav>
+    <div class="sidebar-user">
+      <div class="user-avatar">{{ session['user'][0].upper() }}</div>
+      <div>
+        <div class="user-name">{{ session['user'] }}</div>
+        <div class="user-role">Médecin</div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <div class="main-content">
+    <header class="topbar">
+      <span class="topbar-title">Vue d'ensemble</span>
+      <div class="topbar-right">
+        <div class="status-badge"><div class="status-dot"></div> Système actif</div>
+        <a href="/predict" class="btn-primary"><i class="ti ti-plus"></i> Nouvelle analyse</a>
+      </div>
+    </header>
+
+    <div class="page-body">
+
+      <!-- STATS -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div>
+            <div class="stat-label">Total patients</div>
+            <div class="stat-value">{{ total }}</div>
+            <div class="stat-sub stat-neutral">diagnostics enregistrés</div>
+          </div>
+          <div class="stat-icon icon-blue"><i class="ti ti-users"></i></div>
+        </div>
+        <div class="stat-card">
+          <div>
+            <div class="stat-label">Malins détectés</div>
+            <div class="stat-value">{{ malignant }}</div>
+            <div class="stat-sub stat-down">lésions malignes</div>
+          </div>
+          <div class="stat-icon icon-red"><i class="ti ti-alert-triangle"></i></div>
+        </div>
+        <div class="stat-card">
+          <div>
+            <div class="stat-label">Bénins</div>
+            <div class="stat-value">{{ benign }}</div>
+            <div class="stat-sub stat-up">lésions bénignes</div>
+          </div>
+          <div class="stat-icon icon-green"><i class="ti ti-circle-check"></i></div>
+        </div>
+        <div class="stat-card">
+          <div>
+            <div class="stat-label">Précision IA</div>
+            <div class="stat-value">85%</div>
+            <div class="stat-sub stat-neutral">modèle VGG16</div>
+          </div>
+          <div class="stat-icon icon-gray"><i class="ti ti-brain"></i></div>
+        </div>
+      </div>
+
+      <!-- RECENT -->
+      <div class="section-card">
+        <div class="section-header">
+          <span class="section-title">Dernières analyses</span>
+          <a href="/patients" class="btn-secondary" style="font-size:12px;padding:6px 12px;">Voir tout <i class="ti ti-arrow-right"></i></a>
+        </div>
+        {% if recent %}
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Patient</th>
+              <th>Âge</th>
+              <th>Résultat</th>
+              <th>Confiance</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for p in recent %}
+            <tr>
+              <td><strong>{{ p.name }}</strong></td>
+              <td>{{ p.age }} ans</td>
+              <td><span class="badge {% if p.result == 'Malignant' %}badge-malin{% else %}badge-benin{% endif %}">{{ p.result }}</span></td>
+              <td>
+                <div class="conf-wrap">
+                  <div class="conf-bar">
+                    <div class="conf-fill" style="width:{{ (p.probability*100)|round|int }}%;background:{% if p.result == 'Malignant' %}#dc2626{% else %}#16a34a{% endif %}"></div>
+                  </div>
+                  <span class="conf-label">{{ (p.probability*100)|round(1) }}%</span>
+                </div>
+              </td>
+              <td style="color:#64748b">{{ p.created_at.strftime('%d/%m/%Y') }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        {% else %}
+        <div style="padding:3rem;text-align:center;color:#94a3b8;font-size:13px;">
+          <i class="ti ti-inbox" style="font-size:2rem;display:block;margin-bottom:8px"></i>
+          Aucune analyse pour le moment
+        </div>
+        {% endif %}
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

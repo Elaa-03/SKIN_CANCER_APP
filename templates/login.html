@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SkinAI — Connexion</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="login-page">
+
+  <!-- LEFT — illustration -->
+  <div class="login-left">
+    <div class="login-illustration">
+      <div class="login-big-icon">🔬</div>
+      <h2>Diagnostic IA<br>du Cancer de la Peau</h2>
+      <p>Plateforme médicale intelligente basée sur le modèle VGG16 pour l'analyse des lésions cutanées.</p>
+      <div class="login-features">
+        <div class="login-feat"><div class="feat-dot"></div> Détection Bénin / Malin en secondes</div>
+        <div class="login-feat"><div class="feat-dot"></div> Taux de confiance en pourcentage</div>
+        <div class="login-feat"><div class="feat-dot"></div> Historique complet des diagnostics</div>
+        <div class="login-feat"><div class="feat-dot"></div> Interface médicale professionnelle</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT — form -->
+  <div class="login-right">
+    <div class="login-form-box">
+      <div class="login-logo-row">
+        <div class="login-logo-icon"><i class="ti ti-microscope"></i></div>
+        <span style="font-size:1.4rem;font-weight:700;color:#1e293b">SkinAI</span>
+      </div>
+      <p style="font-size:1.1rem;font-weight:700;color:#1e293b;margin-bottom:4px">Bon retour 👋</p>
+      <p class="login-sub">Connectez-vous à votre espace médical</p>
+
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% for cat, msg in messages %}
+          <div class="flash-{{ cat }}">{{ msg }}</div>
+        {% endfor %}
+      {% endwith %}
+
+      <form method="POST">
+        <div class="form-group">
+          <label class="form-label">Nom d'utilisateur</label>
+          <input type="text" name="username" class="form-control" placeholder="admin" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Mot de passe</label>
+          <input type="password" name="password" class="form-control" placeholder="••••••••" required>
+        </div>
+        <button type="submit" class="btn-primary" style="width:100%;justify-content:center;padding:11px;">
+          <i class="ti ti-login"></i> Se connecter
+        </button>
+      </form>
+
+      <p style="font-size:11px;color:#94a3b8;text-align:center;margin-top:1.5rem;">
+        ENSTAB — Introduction à l'IA — Dr. Amira Echtioui
+      </p>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

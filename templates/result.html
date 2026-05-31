@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SkinAI — Résultat</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="app-layout">
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-icon"><i class="ti ti-microscope" style="color:white;font-size:17px"></i></div>
+      <div><div class="logo-name">SkinAI</div><div class="logo-sub">Dermatology AI</div></div>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="/dashboard" class="nav-item"><i class="ti ti-layout-dashboard"></i> Dashboard</a>
+      <a href="/predict"   class="nav-item active"><i class="ti ti-stethoscope"></i> Nouvelle analyse</a>
+      <div class="nav-section">Données</div>
+      <a href="/patients"  class="nav-item"><i class="ti ti-users"></i> Patients</a>
+      <div class="nav-section">Compte</div>
+      <a href="/logout"    class="nav-item"><i class="ti ti-logout"></i> Déconnexion</a>
+    </nav>
+    <div class="sidebar-user">
+      <div class="user-avatar">A</div>
+      <div><div class="user-name">Admin</div><div class="user-role">Médecin</div></div>
+    </div>
+  </aside>
+
+  <div class="main-content">
+    <header class="topbar">
+      <span class="topbar-title">Résultat du diagnostic</span>
+      <div class="topbar-right">
+        <div class="status-badge"><div class="status-dot"></div> Système actif</div>
+      </div>
+    </header>
+
+    <div class="page-body">
+      <div class="result-page">
+        <div class="result-hero">
+          <div class="result-hero-top">
+            <div>
+              <div class="result-title">Diagnostic IA</div>
+              <div class="result-name">Patient : {{ name }}</div>
+            </div>
+            <div class="result-badge-big {% if result == 'Malignant' %}badge-big-malin{% else %}badge-big-benin{% endif %}">
+              {% if result == 'Malignant' %}
+                <i class="ti ti-alert-triangle"></i> Malin
+              {% else %}
+                <i class="ti ti-circle-check"></i> Bénin
+              {% endif %}
+            </div>
+          </div>
+
+          <div class="result-body">
+            <div class="conf-section">
+              <div class="conf-label-row">
+                <span>Indice de confiance</span>
+                <span><strong>{{ prob }}%</strong></span>
+              </div>
+              <div class="conf-bar-big">
+                <div class="conf-fill-big" style="width:{{ prob }}%;background:{% if result == 'Malignant' %}#dc2626{% else %}#16a34a{% endif %}"></div>
+              </div>
+            </div>
+
+            <div class="result-img-wrap">
+              <img src="{{ img }}" class="result-img" alt="Image analysée">
+            </div>
+
+            {% if result == 'Malignant' %}
+            <div class="alert-box alert-danger">
+              <span class="alert-icon"><i class="ti ti-alert-circle"></i></span>
+              <div><strong>Attention :</strong> Lésion potentiellement maligne détectée. Une consultation urgente chez un dermatologue est fortement recommandée.</div>
+            </div>
+            {% else %}
+            <div class="alert-box alert-success">
+              <span class="alert-icon"><i class="ti ti-check"></i></span>
+              <div><strong>Rassurant :</strong> La lésion est classée comme bénigne. Une surveillance régulière reste conseillée.</div>
+            </div>
+            {% endif %}
+
+            <div class="result-actions">
+              <a href="/predict"   class="btn-primary"><i class="ti ti-plus"></i> Nouvelle analyse</a>
+              <a href="/patients"  class="btn-secondary"><i class="ti ti-users"></i> Voir l'historique</a>
+              <a href="/dashboard" class="btn-secondary"><i class="ti ti-layout-dashboard"></i> Dashboard</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
